@@ -23,8 +23,8 @@ const httpServer = createServer((_, res) => {
 })
 const serverOpts: Partial<ServerOptions> = {
   cors: {
-    origin: ["http://localhost:3000","http://192.168.29.202:3000","http://192.168.29.224:3000"],
-    credentials: true,
+    origin: JSON.parse(process.env.ALLOW_ORIGIN || '"*"'),
+    credentials: !!process.env.ALLOW_ORIGIN,
   },
 }
 const io = new Server<
